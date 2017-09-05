@@ -14,3 +14,21 @@ if graph has edges then
     return error(graph has at lest one cycle
 else return L(a topologically sorted order)
 ```
+
+## implement in severn languages
+- how to store the (implicit) tree
+- can't use any special libraries(aside from the OCaml unix and str libraries, which are not necessary for this assignment)
+- test example
+
+```
+cool rosetta.cl < testcase.list > testcase.out
+gcc -o rosetta rosetta.c && ./rosetta < testcase.list > testcase.out
+ghc --make -o rosetta *.hs ; ./rosetta < testcase.list > testcase.out
+node rosetta.js < testcase.list > testcase.out
+ocaml unix.cma str.cma rosetta.ml < testcase.list > testcase.out
+python rosetta.py < testcase.list > testcase.out
+ruby rosetta.rb < testcase.list > testcase.out
+
+# In each case we will then compare your output to the correct answer:
+diff -b -B -E -w testcase.out correct.answer
+```
