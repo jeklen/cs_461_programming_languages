@@ -15,18 +15,19 @@ def indegree0(v, e):
         return -1
 
     # 只要是包含了这个入度为0的顶点的都可以删掉
-    for t in tmp:
-        for i in range(len(e)):
-            if t in e[i]:
-                e[i] = 'toDel'
+    #for t in tmp:
+    t = min(tmp)
+    for i in range(len(e)):
+        if t in e[i]:
+            e[i] = 'toDel'
     if e:
         eset = set(e)
-        eset.remove('toDel')
+        if ('toDel' in eset):
+            eset.remove('toDel')
         e[:] = list(eset)
     if v:
-        for t in tmp:
-            v.remove(t)
-    return tmp
+        v.remove(t)
+    return t
 
 def topoSort(v, e):
     result = []
@@ -37,14 +38,14 @@ def topoSort(v, e):
         if nodes == -1:
             print("there's a circle")
             return None
-        result.extend(nodes)
+        result.append(nodes)
     return result
 
 lines = sys.__stdin__.readlines()
 lines_set = set(lines)
 v = list(lines_set)
 e = []
-for i in range((len(lines)+1)//2):
+for i in range(len(lines)//2):
     first = lines[2 * i]
     second = lines[2 * i + 1]
     e.append((second, first))
